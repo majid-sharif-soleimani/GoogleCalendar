@@ -1,0 +1,392 @@
+/* ICS Calendar Importer — Popup Styles */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  color: #202124;
+  background: #fff;
+  width: 360px;
+  min-height: 100px;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #e8eaed;
+  background: #1a73e8;
+  color: #fff;
+}
+
+.header img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.header h1 {
+  font-size: 14px;
+  font-weight: 500;
+  flex: 1;
+}
+
+.header-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  font-size: 16px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-btn:hover {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+/* ── Auth Section ─────────────────────────────────────────────────────────── */
+
+.auth-section {
+  padding: 12px 14px;
+  border-bottom: 1px solid #e8eaed;
+  background: #f8f9fa;
+}
+
+.auth-signed-in {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auth-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #1a73e8;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.auth-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.auth-email {
+  font-weight: 500;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #202124;
+}
+
+.auth-label {
+  font-size: 11px;
+  color: #5f6368;
+}
+
+.auth-signed-out {
+  text-align: center;
+}
+
+.auth-signed-out p {
+  color: #5f6368;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+/* ── Import Section ───────────────────────────────────────────────────────── */
+
+.import-section {
+  padding: 12px 14px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: #5f6368;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 4px;
+}
+
+select {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #202124;
+  background: #fff;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235f6368' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+}
+
+select:focus {
+  outline: none;
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 2px rgba(26,115,232,0.15);
+}
+
+select:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ── Input Tabs ───────────────────────────────────────────────────────────── */
+
+.input-panel {
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.panel-label {
+  background: #f8f9fa;
+  padding: 7px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #5f6368;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  border-bottom: 1px solid #e8eaed;
+}
+
+.panel-body {
+  padding: 10px 12px;
+}
+
+/* ── File Input ───────────────────────────────────────────────────────────── */
+
+.file-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-label {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #1a73e8;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.file-label:hover {
+  background: #f0f4ff;
+}
+
+.file-name {
+  font-size: 12px;
+  color: #5f6368;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── URL Input ────────────────────────────────────────────────────────────── */
+
+.url-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+input[type="url"],
+input[type="text"] {
+  flex: 1;
+  padding: 7px 10px;
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #202124;
+  min-width: 0;
+}
+
+input[type="url"]:focus,
+input[type="text"]:focus {
+  outline: none;
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 2px rgba(26,115,232,0.15);
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+
+.btn-primary {
+  padding: 7px 16px;
+  background: #1a73e8;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #1557b0;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.btn-secondary {
+  padding: 7px 16px;
+  background: #fff;
+  color: #1a73e8;
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.btn-secondary:hover {
+  background: #f0f4ff;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #1a73e8;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.btn-link:hover {
+  color: #1557b0;
+}
+
+/* ── Status ───────────────────────────────────────────────────────────────── */
+
+.status-area {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.status-area.loading {
+  background: #e8f0fe;
+  color: #1a73e8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-area.success {
+  background: #e6f4ea;
+  color: #137333;
+}
+
+.status-area.error {
+  background: #fce8e6;
+  color: #c5221f;
+}
+
+.status-area.warning {
+  background: #fef7e0;
+  color: #b5640a;
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(26,115,232,0.3);
+  border-top-color: #1a73e8;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.progress-bar {
+  height: 3px;
+  background: #e8eaed;
+  border-radius: 2px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #1a73e8;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* ── Error details ────────────────────────────────────────────────────────── */
+
+.error-list {
+  margin-top: 4px;
+  padding-left: 14px;
+  font-size: 11px;
+  color: #9c3e3b;
+}
+
+.error-list li {
+  margin-top: 2px;
+}
+
+/* ── Utility ──────────────────────────────────────────────────────────────── */
+
+.hidden {
+  display: none !important;
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICS Calendar Importer</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <img src="icons/icon48.png" alt="Calendar">
+    <h1>ICS Calendar Importer</h1>
+    <button class="header-btn" id="optionsBtn" title="Settings">&#9881;</button>
+  </div>
+
+  <!-- Auth Section -->
+  <div class="auth-section" id="authSection">
+    <!-- Signed in state -->
+    <div class="auth-signed-in hidden" id="signedInState">
+      <div class="auth-avatar" id="userAvatar">?</div>
+      <div class="auth-info">
+        <div class="auth-email" id="userEmail">Loading…</div>
+        <div class="auth-label">Connected to Google Calendar</div>
+      </div>
+      <button class="btn-secondary" id="signOutBtn" style="font-size:11px;padding:4px 10px;">Sign out</button>
+    </div>
+    <!-- Signed out state -->
+    <div class="auth-signed-out" id="signedOutState">
+      <p>Sign in to import events to Google Calendar</p>
+      <button class="btn-primary" id="signInBtn">Sign in with Google</button>
+    </div>
+  </div>
+
+  <!-- Import Section (only shown when signed in) -->
+  <div class="import-section hidden" id="importSection">
+
+    <!-- Calendar Selector -->
+    <div class="form-group">
+      <label for="calendarSelect">Import to calendar</label>
+      <select id="calendarSelect" disabled>
+        <option value="">Loading calendars…</option>
+      </select>
+    </div>
+
+    <!-- From File -->
+    <div class="input-panel">
+      <div class="panel-label">From File</div>
+      <div class="panel-body">
+        <div class="file-row">
+          <input type="file" id="fileInput" accept=".ics,text/calendar">
+          <label class="file-label" for="fileInput">Choose file…</label>
+          <span class="file-name" id="fileName">No file chosen</span>
+        </div>
+        <button class="btn-primary btn-full" id="importFileBtn" disabled>
+          Import File
+        </button>
+      </div>
+    </div>
+
+    <!-- From URL -->
+    <div class="input-panel">
+      <div class="panel-label">From URL or webcal://</div>
+      <div class="panel-body">
+        <div class="url-row">
+          <input
+            type="url"
+            id="urlInput"
+            placeholder="https://example.com/calendar.ics"
+          >
+          <button class="btn-primary" id="importUrlBtn">Import</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status / Progress -->
+    <div class="status-area hidden" id="statusArea">
+      <div id="statusMessage"></div>
+      <div class="progress-bar hidden" id="progressBar">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+      <ul class="error-list hidden" id="errorList"></ul>
+    </div>
+
+  </div>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>

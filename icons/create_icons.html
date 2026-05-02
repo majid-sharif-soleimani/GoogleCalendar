@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generate Extension Icons</title>
+  <style>
+    body { font-family: sans-serif; padding: 24px; background: #f8f9fa; }
+    h2 { color: #1a73e8; margin-bottom: 8px; }
+    p  { color: #5f6368; margin-bottom: 16px; }
+    canvas { border: 1px solid #e0e0e0; margin: 8px; border-radius: 4px; }
+    #status { margin-top: 16px; color: #137333; font-weight: 500; }
+  </style>
+</head>
+<body>
+  <h2>ICS Calendar Importer — Icon Generator</h2>
+  <p>Open this file in Chrome. Icons will be generated and downloaded automatically.<br>
+     Save all downloaded files into this <code>icons/</code> folder.</p>
+  <div id="canvases"></div>
+  <div id="status">Generating icons…</div>
+
+  <script>
+    const sizes = [16, 48, 128];
+    const container = document.getElementById('canvases');
+    let done = 0;
+
+    sizes.forEach(size => {
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      canvas.title = `icon${size}.png`;
+      container.appendChild(canvas);
+
+      const ctx = canvas.getContext('2d');
+
+      // Background: rounded rectangle (blue)
+      const r = size * 0.15;
+      ctx.fillStyle = '#1a73e8';
+      roundRect(ctx, 0, 0, size, size, r);
+      ctx.fill();
+
+      // White calendar body
+      const pad = size * 0.1;
+      const top = size * 0.28;
+      const bodyR = size * 0.08;
+      ctx.fillStyle = '#fff';
+      roundRect(ctx, pad, top, size - pad * 2, size - top - pad, bodyR);
+      ctx.fill();
+
+      // Header bar (dark blue)
+      ctx.fillStyle = '#1557b0';
+      roundRect(ctx, pad, top, size - pad * 2, size * 0.22, bodyR, true);
+      ctx.fill();
+
+      // Binding posts (tabs at top)
+      const tabW = size * 0.08;
+      const tabH = size * 0.16;
+      const tabY = size * 0.1;
+      const tabR = tabW / 2;
+      ctx.fillStyle = '#e8f0fe';
+      // Left tab
+      roundRect(ctx, size * 0.28 - tabW / 2, tabY, tabW, tabH, tabR);
+      ctx.fill();
+      // Right tab
+      roundRect(ctx, size * 0.72 - tabW / 2, tabY, tabW, tabH, tabR);
+      ctx.fill();
+
+      // Grid dots (calendar days) — only for larger sizes
+      if (size >= 48) {
+        const dotR = size * 0.04;
+        const gridTop = top + size * 0.28;
+        const cols = 3, rows = 2;
+        const colStep = (size - pad * 2) / (cols + 1);
+        const rowStep = (size - gridTop - pad) / (rows + 1);
+
+        ctx.fillStyle = '#5f6368';
+        for (let row = 0; row < rows; row++) {
+          for (let col = 0; col < cols; col++) {
+            const cx = pad + colStep * (col + 1);
+            const cy = gridTop + rowStep * (row + 1);
+            ctx.beginPath();
+            ctx.arc(cx, cy, dotR, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+        // Highlight today dot
+        ctx.fillStyle = '#1a73e8';
+        ctx.beginPath();
+        ctx.arc(pad + colStep, gridTop + rowStep, dotR * 1.4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Download after rendering
+      canvas.toBlob(blob => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `icon${size}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        done++;
+        if (done === sizes.length) {
+          document.getElementById('status').textContent =
+            '✓ All icons downloaded! Move them to the icons/ folder, then close this tab.';
+        }
+      }, 'image/png');
+    });
+
+    // Helper: draw rounded rect path
+    function roundRect(ctx, x, y, w, h, r, topOnly = false) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      if (topOnly) {
+        ctx.lineTo(x + w, y + h);
+        ctx.lineTo(x, y + h);
+      } else {
+        ctx.lineTo(x + w, y + h - r);
+        ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+        ctx.lineTo(x + r, y + h);
+        ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      }
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+    }
+  </script>
+</body>
+</html>

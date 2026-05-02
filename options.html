@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICS Calendar Importer — Settings</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 14px;
+      color: #202124;
+      background: #f8f9fa;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 32px 20px;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 500;
+      color: #1a73e8;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #5f6368;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #dadce0;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #202124;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e8eaed;
+    }
+
+    .auth-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .auth-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #1a73e8;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .auth-info { flex: 1; }
+    .auth-name { font-weight: 500; }
+    .auth-email { font-size: 12px; color: #5f6368; margin-top: 2px; }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group:last-child { margin-bottom: 0; }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: #5f6368;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 6px;
+    }
+
+    select {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid #dadce0;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #202124;
+      background: #fff;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235f6368' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: #1a73e8;
+      box-shadow: 0 0 0 2px rgba(26,115,232,0.15);
+    }
+
+    select:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn-primary {
+      padding: 9px 20px;
+      background: #1a73e8;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn-primary:hover { background: #1557b0; }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-secondary {
+      padding: 9px 20px;
+      background: #fff;
+      color: #1a73e8;
+      border: 1px solid #dadce0;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn-secondary:hover { background: #f0f4ff; }
+
+    .status-msg {
+      margin-top: 12px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    .status-msg.success { background: #e6f4ea; color: #137333; }
+    .status-msg.error   { background: #fce8e6; color: #c5221f; }
+    .status-msg.info    { background: #e8f0fe; color: #1a73e8; }
+    .hidden             { display: none !important; }
+
+    .divider {
+      height: 1px;
+      background: #e8eaed;
+      margin: 14px 0;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #5f6368;
+      margin-top: 5px;
+    }
+
+    .setup-link {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+    .setup-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="4" width="18" height="18" rx="3" stroke="#1a73e8" stroke-width="2"/>
+        <path d="M3 9h18" stroke="#1a73e8" stroke-width="2"/>
+        <path d="M8 2v4M16 2v4" stroke="#1a73e8" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      ICS Calendar Importer
+    </h1>
+    <p class="subtitle">Settings &amp; Configuration</p>
+
+    <!-- Account Card -->
+    <div class="card">
+      <div class="card-title">Google Account</div>
+
+      <div id="signedInCard" class="hidden">
+        <div class="auth-row">
+          <div class="auth-avatar" id="optAvatar">?</div>
+          <div class="auth-info">
+            <div class="auth-name" id="optName">–</div>
+            <div class="auth-email" id="optEmail">–</div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-secondary" id="signOutBtn">Sign out</button>
+        </div>
+      </div>
+
+      <div id="signedOutCard">
+        <p style="color:#5f6368;font-size:13px;margin-bottom:12px;">
+          Not connected. Sign in to allow the extension to add events to your Google Calendar.
+        </p>
+        <button class="btn-primary" id="signInBtn">Sign in with Google</button>
+      </div>
+
+      <div id="authStatus" class="status-msg hidden"></div>
+    </div>
+
+    <!-- Default Calendar Card -->
+    <div class="card" id="calendarCard">
+      <div class="card-title">Default Calendar</div>
+
+      <div class="form-group">
+        <label for="defaultCalendar">Import events to</label>
+        <select id="defaultCalendar" disabled>
+          <option value="">Sign in to load calendars…</option>
+        </select>
+        <p class="hint">This calendar is used when no calendar is selected in the popup.</p>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-primary" id="saveBtn" disabled>Save</button>
+      </div>
+
+      <div id="saveStatus" class="status-msg hidden"></div>
+    </div>
+
+    <!-- Setup Info -->
+    <div class="card">
+      <div class="card-title">Setup</div>
+      <p style="font-size:13px;color:#5f6368;line-height:1.6;">
+        Before signing in, make sure you have added your Google OAuth Client ID to
+        <code style="background:#f1f3f4;padding:1px 5px;border-radius:3px;">manifest.json</code>.
+        See <a href="#" id="setupLink" class="setup-link">SETUP.md</a> for step-by-step instructions.
+      </p>
+    </div>
+  </div>
+
+  <script src="options.js" type="module"></script>
+</body>
+</html>
